@@ -67,13 +67,13 @@ public class Utility {
     }
 
     /*
-    * 系系和处理服务器返回的县级数据
+    * 解析和处理服务器返回的县级数据
     * */
     public static boolean handleCountyResponse(String response, int cityId) {
         if (!TextUtils.isEmpty(response)) {
             try {
                 JSONArray allCounties = new JSONArray(response);
-                for (int i = 0; i < allCounties.length(); i++) {
+                for (int i = 0; i < allCounties.length(); ++i) {
                     JSONObject countyObject = allCounties.getJSONObject(i);
                     County county = new County();
                     county.setCountyName(countyObject.getString("name"));
