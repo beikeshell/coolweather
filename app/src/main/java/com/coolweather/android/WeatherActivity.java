@@ -38,6 +38,8 @@ public class WeatherActivity extends AppCompatActivity {
 
     private static final String TAG = "CW_WeatherActivity";
 
+    private static final String key = "522060d7719643f7a28a237f154f6fc9";
+
     private ScrollView weatherLayout;
     private TextView titleCity;
     private TextView titleUpdateTime;
