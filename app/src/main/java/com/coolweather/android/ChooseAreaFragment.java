@@ -159,7 +159,7 @@ public class ChooseAreaFragment extends Fragment{
         countyList = DataSupport.where("cityid = ?",
                 String.valueOf(selectedCity.getId())).find(County.class);
         Log.d(TAG, "queryCounties: county count is " + countyList.size());
-        if (countyList.size() > 0) {
+        if (countyList.size() > 0) { //如果从网络拿不到数据则会导致无线循环
             dataList.clear();
             for (County county : countyList) {
                 dataList.add(county.getCountyName());
@@ -173,6 +173,13 @@ public class ChooseAreaFragment extends Fragment{
             String address = "http://guolin.tech/api/china/" + provinceCode + "/" +cityCode;
             queryFromServer(address, "county");
         }
+    }
+
+    private void queryCountiesFromInternet() {
+        int provinceCode = selectedProvince.getProvinceCode();
+        int cityCode = selectedCity.getCityCode();
+        String address = "http://guolin.tech/api/china" + provinceCode + "/" + cityCode;
+        queryFromServer(address, "county");
     }
 
     /*
@@ -200,6 +207,12 @@ public class ChooseAreaFragment extends Fragment{
         }
     }
 
+    private void queryCitiesFromInternet() {
+        int provinceCode = selectedProvince.getProvinceCode();
+        final String address = "http://guolin.tech/api/china" + provinceCode;
+        queryFromServer(address, "city");
+    }
+
     /*
     * 查询全国所有的省，优先从数据库查询，如果没有查询到再去服务器上查询
     * */
@@ -220,6 +233,11 @@ public class ChooseAreaFragment extends Fragment{
             String address = "http://guolin.tech/api/china";
             queryFromServer(address, "province");
         }
+    }
+
+    private void queryProvincesFromInternet() {
+        final String address = "http://guolin.tech/api/china";
+        queryFromServer(address, "province");
     }
 
     /*

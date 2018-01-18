@@ -1,5 +1,6 @@
 package com.coolweather.android.util;
 
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.coolweather.android.db.City;
@@ -92,6 +93,7 @@ public class Utility {
     /*
     * 将返回的JSON数据解析成Weather实体类
     * */
+    @Nullable
     public static Weather handleWeatherResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
